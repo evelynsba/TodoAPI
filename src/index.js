@@ -1,26 +1,33 @@
 const express = require("express");
 
-const UserControllers = require("./controller/usersControllers/users.controllers");
+const UserControllers = require("./controller/usersControllers/usersControllers");
 
-const tasksHandler = require("./controller/tasksControllers/tasksControllers");
+const TasksControllers = require("./controller/tasksControllers/tasksControllers");
 
-const {PORT} = require("./util/appConfig")
-
-const users = new UserControllers();
-const tasks = new TasksControllers();
-
+const { APP_PORT, APP_NAME } = require("./utils/appConfig");
 
 const app = express();
 // const port = config.PORT;
+
+app.use((req, res, next) => {
+    console.log(req.headers.host, new Date().toLocaleTimeString());
+    next();
+});
+
+app.use(express.json)
+
 
 app.get("/", (req, res)=> {
     res.send("Todo APP API")
 });
 
 
-app.get("/users", users.show);
-app.get("/tasks", tasks.show);
+app.get("/users", UserControllers.show);
+app.post("/users", UserControllers.save);
 
-app.listen(PORT, ()=>{
-    console.log(`Example app listening at http://localhost:${PORT}`);
+app.get("/tasks",  TasksControllers.show);
+app.postt("/tasks", TasksControllers.save);
+
+app.listen(APP_PORT, ()=>{
+    console.log(`${APP_NAME} listening at http://localhost:${APP_PORT}`);
 });

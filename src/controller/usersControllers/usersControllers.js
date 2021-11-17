@@ -5,6 +5,12 @@ class UserControllers{
         "Rota ativada com GET e recurso Usuário: valores de usuários devem ser retornados."
     );
 }
+
+save = (req,res) =>{
+    res.send(
+        "Rota POST"
+    )
+}
 }
     
-module.exports = UserControllers;
+module.exports = new UserControllers();
