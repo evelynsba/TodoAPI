@@ -11,6 +11,12 @@ save = (req,res) =>{
         "Rota POST"
     )
 }
+
+remove = (req,res) =>{
+    res.send(
+        
+    )
+}
 }
     
 module.exports = new UserControllers();

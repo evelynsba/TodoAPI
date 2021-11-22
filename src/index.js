@@ -24,9 +24,11 @@ app.get("/", (req, res)=> {
 
 app.get("/users", UserControllers.show);
 app.post("/users", UserControllers.save);
+app.remove("/Users/:email", UserControllers.remove);
 
 app.get("/tasks",  TasksControllers.show);
 app.postt("/tasks", TasksControllers.save);
+app.remove("/tasks")
 
 app.listen(APP_PORT, ()=>{
     console.log(`${APP_NAME} listening at http://localhost:${APP_PORT}`);
